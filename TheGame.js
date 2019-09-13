@@ -10,6 +10,7 @@ function setLvl() {
     if (lvl.value == "Easy") {
         answer = getTheNumber(1, 10);
         levelPoints = 10;
+        answerField.placeholder = "Нумерочок від 1 до 10"
         console.log(answer);
     } else if (lvl.value == "Medium") {
         answer = getTheNumber(1, 30);
@@ -150,6 +151,7 @@ let lvl = document.getElementById("lvl");
 let ThatsTable
 
 $(document).ready(function () {
+    $('#LiederShipTable').fadeOut()
     
     $("#nameButt").click(function () {
         $("#Username").prop({ disabled: false })
@@ -180,21 +182,23 @@ $(document).ready(function () {
         $("#Username").prop({ disabled: true })
         if (usersNumber == answer) {
             console.log(username.value + ":" + FinalRait);
-            function CreateRait() {
-                $('#LiederShipTable').prepend('<h5>'+username.value+":"+FinalRait+'</h5>')
-            }
-            CreateRait();
+            $('#LiederShipTable').prepend('<h5>'+username.value+":"+FinalRait+'</h5>')
+            $('#LiederShipTable').fadeIn(750);
         }
-
     })
-
     $("#resetButt").click(function () {
         $("#lvl").prop({ disabled: false });
         $("#nameButt").prop({ disabled: false });
         console.log(answer)
+            function OneAfterAnother() {
+                $('#LiederShipTable').fadeOut(750);
+             function Empty() {
+                 $('#LiederShipTable').empty();
+             }
+                 setTimeout (Empty, 1000)
+             }
+             OneAfterAnother()
     })
-
-
     $(window).on('unload', function () {
         function saveRait() {
             addRait = new NameAndRait();
@@ -203,10 +207,7 @@ $(document).ready(function () {
             localStorage.setItem("rating", CodedRait);
         }
         saveRait();
-
     })
-
-
 })
 
 
