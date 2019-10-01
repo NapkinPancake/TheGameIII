@@ -13,31 +13,33 @@
 </head>
 
 <body>
+    <div id='overlay'>
+        <form id='overlayForm'>
+            <input type="text" name="Обирай ім'я " id="Username" placeholder="Player Name">
+            <select name="lvl" id="lvl">
+                <option value="Easy" id="lvl1">Легенько</option>
+                <option value="Medium" id="lvl2">Оптимально</option>
+                <option value="Hard" id="lvl3"> Важко</option>
+            </select>
+            <input type="button" id="overlayButt" value="Почати">
+        </form>
+    </div>
+
     <div class="container">
         <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4" class="UsernameField">
-                <form>
-                    <input type="text" name="Player Name" id="Username" placeholder="Player Name">
-                    <input type="button" id="nameButt" value="Choose" onclick="enteringName();setLvl()">
-                    <select name="lvl" id="lvl">
-                        <option value="Easy" id="lvl1">Легенько</option>
-                        <option value="Medium" id="lvl2">Оптимально</option>
-                        <option value="Hard" id="lvl3"> Важко</option>
-                    </select>
-
-                </form>
-            </div>
-            <div class="col-2"></div>
-            <div class="col-2"  id=LiederShipTable>
+            <div class="col-5"></div>
+            <div class="col-2" class="UsernameField"> <button id='name'>Тисни на мене!</button></div>
+            <div class="col-3"></div>
+            <div class="col-2" id=LiederShipTable>
             </div>
         </div>
-
+        <br>
         <div class="row">
             <div class="col-4">
                 <input type="image" id="BackGroundImg" alt="meme"
                     src="https://hsl.guru/wp-content/uploads/2015/11/14279748638979.jpg">
             </div>
+            
             <div class="col-4" class="center">
                 <h1>Вгадайка III</h1>
                 <br>
@@ -47,7 +49,7 @@
                     <input class="Text" type="text" readonly name="answer" id="answer1" value="">
                     <br>
                     <input class="buttons" type="button" id="pushOne"
-                        onclick="triesCounter();getValue();savingResulsts();raunds();blockTheName()" value="Тицяй">
+                        onclick="triesCounter();getValue();savingResulsts();raunds()" value="Тицяй">
                     <input id="resetButt" class="buttons" type="button" name="resButton" value="Ресет"
                         onclick="form.reset();theNewBeginning()">
                 </form>
@@ -55,7 +57,10 @@
             <div class="col-4" id="WinForm">
                 <input type="image" id="WinImg" alt="Fredie" src="meme.png">
             </div>
+
         </div>
+
+
 
         <script src="TheGame.js"></script>
 
@@ -67,6 +72,7 @@
             </script>
 
     </div>
+
 
 </body>
 

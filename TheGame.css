@@ -62,9 +62,11 @@ div>h1 {
 }
 
 #Username {
-    padding: 5% 10%;
+    padding: 5% 5%;
     font-size: 120%;
-
+    border-color: none;
+    height: 20%;
+    width: 80%;
 
 }
 
@@ -72,9 +74,35 @@ div>h1 {
     position: none;
     left: none;
     top: none;
+    text-align: center;
 }
 
 #LiederShipTable {
 text-align: center;
 }
 
+#overlay {
+    position:fixed;
+    display:none;
+    width:100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+
+
+#overlayForm {
+    position:absolute;
+    top: 0%;
+    left: 41%;
+    background-color: none;
+}
+
+#name {
+    font-size: 120%;
+    width: 100%;
+    height: 100%;
+    
+    
+}

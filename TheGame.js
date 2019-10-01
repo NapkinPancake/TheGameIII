@@ -120,7 +120,7 @@ function raunds() {
         textField.disabled = true;
         NameAndRait();
         saveRait();
-        
+
     } else if (usersNumber == answer) {
         button1.disabled = true;
         textField.disabled = true;
@@ -151,23 +151,17 @@ let lvl = document.getElementById("lvl");
 let ThatsTable
 
 $(document).ready(function () {
+    (() => setTimeout($('#overlay').css('display', 'block'), 2000));
+    let try1Disabled = $("#try1").prop({ disabled: true })
+    let pushOneDisabled = $("#pushOne").prop({ disabled: true })
+    let resetButtDisabled = $("#resetButt").prop({ disabled: true })
+
     $('#LiederShipTable').fadeOut()
-    
+
     $("#nameButt").click(function () {
-        $("#Username").prop({ disabled: false })
-        //localStorage.setItem(username.value, FinalRait)
         addRait = new NameAndRait();
         liedershipTable.push(addRait);
-        if (username.value.length == 0) {
-            $("#lvl").prop({ disabled: true })
-            $("#try1").prop({ disabled: true })
-            $("#pushOne").prop({ disabled: true })
-        } else if (username.value.length > 0) {
-            $("#lvl").prop({ disabled: false })
-            $("#try1").prop({ disabled: false })
-            $("#pushOne").prop({ disabled: false })
-        } else {
-        }
+
         games = 0;
         rating = 0;
         tryNumber = 0;
@@ -177,27 +171,26 @@ $(document).ready(function () {
         setLvl();
     })
     $("#pushOne").click(function () {
-        $("#lvl").prop({ disabled: true });
-        $("#nameButt").prop({ disabled: true });
-        $("#Username").prop({ disabled: true })
+        $('#name').prop({ disabled: true })
         if (usersNumber == answer) {
             console.log(username.value + ":" + FinalRait);
-            $('#LiederShipTable').prepend('<h5>'+username.value+":"+FinalRait+'</h5>')
+            console.log(typeof FinalRait);
+            $('#LiederShipTable').prepend('<h5>' + username.value + ":" + FinalRait.toFixed(1) + '</h5>')
             $('#LiederShipTable').fadeIn(750);
         }
     })
     $("#resetButt").click(function () {
-        $("#lvl").prop({ disabled: false });
-        $("#nameButt").prop({ disabled: false });
+        $('#name').prop({disabled: false})
         console.log(answer)
-            function OneAfterAnother() {
-                $('#LiederShipTable').fadeOut(750);
-             function Empty() {
-                 $('#LiederShipTable').empty();
-             }
-                 setTimeout (Empty, 1000)
-             }
-             OneAfterAnother()
+        function OneAfterAnother() {
+            $('#LiederShipTable').fadeOut(750);
+            function Empty() {
+                $('#LiederShipTable').empty();
+            }
+            setTimeout(Empty, 1000)
+        }
+        OneAfterAnother()
+        
     })
     $(window).on('unload', function () {
         function saveRait() {
@@ -205,8 +198,26 @@ $(document).ready(function () {
             liedershipTable.push(addRait);
             CodedRait = JSON.stringify(liedershipTable);
             localStorage.setItem("rating", CodedRait);
+            try1Disabled;
         }
         saveRait();
+    })
+
+    $('#name').click(() =>
+        $('#overlay').css('display', 'block'))
+    $('#overlayButt').click(() => {
+        if (username.value.length == 0) {
+            $('#Username').css({'border-color': 'darkred', 'padding':'5px', 'border-style': ' solid '})
+            return false;
+        } else {
+            $('#Username').css({'border-color': 'none', 'padding':'none', 'border-style': 'none '})
+            $("#Username").prop({ disabled: false })
+            $("#try1").prop({ disabled: false })
+            $("#pushOne").prop({ disabled: false })
+            $("#resetButt").prop({ disabled: false })
+            $('#overlay').css('display', 'none')
+            setLvl();
+        }
     })
 })
 
@@ -216,18 +227,10 @@ if (username.value.length == 0) {
     textField.disabled = true;
     button1.disabled = true;
     button2.disabled = true;
-    $("#lvl").prop({ disabled: true });
+
 
 }
 
-function enteringName() {
-    if (username.value.length > 0) {
-        textField.disabled = false;
-        button1.disabled = false;
-        button2.disabled = false;
-        document.getElementById("nameButt").value = "Change name";
-    }
-}
 
 function blockTheName() {
     if (username.value.length > 0) {
